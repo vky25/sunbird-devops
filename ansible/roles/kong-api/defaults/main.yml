@@ -9553,8 +9553,8 @@ kong_apis:
     config.enabled: true
 
 - name: courseProgress
-  uris: "{{ course_service_prefix }}/v1/progress/report"
-  upstream_url: "{{ knowledge_mw_service_url }}/v1/course/progress/report"
+  uris: "{{ course_service_prefix }}/v1/progress/reports"
+  upstream_url: "{{ knowledge_mw_service_url }}/v1/course/progress/reports"
   strip_uri: true
   plugins:
   - name: jwt
