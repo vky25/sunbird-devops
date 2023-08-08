@@ -112,7 +112,6 @@ kong_all_consumer_groups:
   - reportsCreate
   - reportsUpdate
   - ssoCreate
-  - userAccess
   - userAdmin
   - userCreate
   - userTempAdmin
