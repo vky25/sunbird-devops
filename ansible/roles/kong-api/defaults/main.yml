@@ -9552,7 +9552,7 @@ kong_apis:
     config.required: true
     config.enabled: true
 
-- name: createReport
+- name: CourseProgressReport
   uris: "{{ report_service_prefix }}v1/progress/reports"
   upstream_url: "{{ report_service_url }}/v1/course/progress/reports"
   strip_uri: true
