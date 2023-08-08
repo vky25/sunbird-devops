@@ -9552,9 +9552,9 @@ kong_apis:
     config.required: true
     config.enabled: true
 
-- name: courseProgress
-  uris: "{{ course_service_prefix }}/v1/progress/reports"
-  upstream_url: "{{ knowledge_mw_service_url }}/v1/course/progress/reports"
+- name: createReport
+  uris: "{{ report_service_prefix }}v1/progress/reports"
+  upstream_url: "{{ report_service_url }}/v1/course/progress/reports"
   strip_uri: true
   plugins:
   - name: jwt
@@ -9562,7 +9562,7 @@ kong_apis:
   - "{{ statsd_pulgin }}"
   - name: acl
     config.whitelist:
-    - courseProgress
+    - reportsCreate
   - name: rate-limiting
     config.policy: local
     config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -9570,5 +9570,5 @@ kong_apis:
   - name: request-size-limiting
     config.allowed_payload_size: "{{ small_request_size_limit }}"
   - name: opa-checks
-    config.required: false
-    config.enabled: false
+    config.required: true
+    config.enabled: true
