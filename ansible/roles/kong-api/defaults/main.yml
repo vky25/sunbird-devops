@@ -109,6 +109,7 @@ cert_service_url: "http://cert-service:9000"
 cert_registry_service_url: "http://cert-registry-service:9000"
 content_service_url: "http://content-service:9000"
 report_service_url: "http://report-service:3030"
+custom_report_service_url: "http://{{custom-report-service-ip}}:9009"
 group_service_url: "http://groups-service:9000"
 analytics_api_service_url: "http://analytics-service:9000"
 taxonomy_service_url: "http://taxonomy-service:9000"
@@ -9552,9 +9553,9 @@ kong_apis:
     config.required: true
     config.enabled: true
 
-- name: progressReport
-  uris: "{{ report_service_prefix }}/course/progress/reports"
-  upstream_url: "{{ report_service_url }}/v1/course/progress/reports"
+- name: progressReportCustom
+  uris: "/v1/course/progress/reports"
+  upstream_url: "{{ custom_report_service_url }}/v1/course/progress/reports"
   strip_uri: true
   plugins:
   - name: jwt
@@ -9562,7 +9563,7 @@ kong_apis:
   - "{{ statsd_pulgin }}"
   - name: acl
     config.whitelist:
-    - progressReport
+    - customReports
   - name: rate-limiting
     config.policy: local
     config.hour: "{{ medium_rate_limit_per_hour }}"
