@@ -110,7 +110,6 @@ cert_registry_service_url: "http://cert-registry-service:9000"
 content_service_url: "http://content-service:9000"
 report_service_url: "http://report-service:3030"
 custom_report_service_url: "http://{{custom_report_service_ip}}:9009"
-custom_report_service_url: "http://player:3000"
 group_service_url: "http://groups-service:9000"
 analytics_api_service_url: "http://analytics-service:9000"
 taxonomy_service_url: "http://taxonomy-service:9000"
@@ -9559,7 +9558,6 @@ kong_apis:
   upstream_url: "{{ custom_report_service_url }}/api/v1/course/progress/reports"
   strip_uri: true
   plugins:
-  - name: jwt
   - name: cors
   - "{{ statsd_pulgin }}"
   - name: acl
