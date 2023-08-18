@@ -9558,7 +9558,6 @@ kong_apis:
   upstream_url: "{{ custom_report_service_url }}/api/v1/course/progress/reports"
   strip_uri: true
   plugins:
-  - name: jwt
   - name: cors
   - "{{ statsd_pulgin }}"
   - name: acl
