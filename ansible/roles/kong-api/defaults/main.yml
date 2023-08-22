@@ -9554,8 +9554,8 @@ kong_apis:
     config.enabled: true
 
 - name: progressReportCustom
-  uris: "/v1/course/progress/reports"
-  upstream_url: "{{ custom_report_service_url }}/api/v1/course/progress/reports"
+  uris: "/learner/course/progress/reports"
+  upstream_url: "{{ custom_report_service_url }}/learner/course/progress/reports"
   strip_uri: true
   plugins:
   - name: jwt
