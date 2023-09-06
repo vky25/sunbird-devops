@@ -9595,6 +9595,27 @@ kong_apis:
     config.required: false
     config.enabled: false    
 
+- name: progressReportexportAsCsv
+  uris: "/learner/course/v1/progress/reports/exportAsCsv"
+  upstream_url: "{{ custom_report_service_url }}/learner/course/v1/progress/reports/exportAsCsv"
+  strip_uri: true
+  plugins:
+  - name: jwt
+  - name: cors
+  - "{{ statsd_pulgin }}"
+  - name: acl
+    config.whitelist:
+    - customReports
+  - name: rate-limiting
+    config.policy: local
+    config.hour: "{{ medium_rate_limit_per_hour }}"
+    config.limit_by: credential
+  - name: request-size-limiting
+    config.allowed_payload_size: "{{ small_request_size_limit }}"
+  - name: opa-checks 
+    config.required: false
+    config.enabled: false
+
 - name: adminUserUnEnrollment
   uris: "{{ course_service_prefix }}/v1/admin/unenroll"
   upstream_url: "{{ lms_service_url }}/v1/course/admin/unenroll"
