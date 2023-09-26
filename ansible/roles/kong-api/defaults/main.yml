@@ -9551,70 +9551,7 @@ kong_apis:
     config.remove.headers: Authorization
   - name: opa-checks
     config.required: true
-    config.enabled: true
-
-- name: progressReportCustom
-  uris: "/course/v1/progress/reports"
-  upstream_url: "{{ custom_report_service_url }}/course/v1/progress/reports"
-  strip_uri: true
-  plugins:
-  - name: jwt
-  - name: cors
-  - "{{ statsd_pulgin }}"
-  - name: acl
-    config.whitelist:
-    - customReports
-  - name: rate-limiting
-    config.policy: local
-    config.hour: "{{ medium_rate_limit_per_hour }}"
-    config.limit_by: credential
-  - name: request-size-limiting
-    config.allowed_payload_size: "{{ small_request_size_limit }}"
-  - name: opa-checks 
-    config.required: false
-    config.enabled: false
-
-- name: courseEnrolmentsummary
-  uris: "/learner/v1/course/enrolmentsummary"
-  upstream_url: "{{ custom_report_service_url }}/learner/v1/course/enrolmentsummary"
-  strip_uri: true
-  plugins:
-  - name: jwt
-  - name: cors
-  - "{{ statsd_pulgin }}"
-  - name: acl
-    config.whitelist:
-    - customReports
-  - name: rate-limiting
-    config.policy: local
-    config.hour: "{{ medium_rate_limit_per_hour }}"
-    config.limit_by: credential
-  - name: request-size-limiting
-    config.allowed_payload_size: "{{ small_request_size_limit }}"
-  - name: opa-checks
-    config.required: false
-    config.enabled: false    
-
-- name: progressReportexportAsCsv
-  uris: "/learner/course/v1/progress/reports/exportAsCsv"
-  upstream_url: "{{ custom_report_service_url }}/learner/course/v1/progress/reports/exportAsCsv"
-  strip_uri: true
-  plugins:
-  - name: jwt
-  - name: cors
-  - "{{ statsd_pulgin }}"
-  - name: acl
-    config.whitelist:
-    - customReports
-  - name: rate-limiting
-    config.policy: local
-    config.hour: "{{ medium_rate_limit_per_hour }}"
-    config.limit_by: credential
-  - name: request-size-limiting
-    config.allowed_payload_size: "{{ small_request_size_limit }}"
-  - name: opa-checks 
-    config.required: false
-    config.enabled: false
+    config.enabled: true  
 
 - name: adminUserUnEnrollment
   uris: "{{ course_service_prefix }}/v1/admin/unenroll"
@@ -9675,27 +9612,6 @@ kong_apis:
     config.limit_by: credential
   - name: request-size-limiting
     config.allowed_payload_size: "{{ small_request_size_limit }}"
-  - name: opa-checks
-    config.required: false
-    config.enabled: false
-
-- name: orgv2BulkUpload
-  uris: "/user/v2/upload"
-  upstream_url: "{{ learning_service_url }}/user/v2/upload"
-  strip_uri: true
-  plugins:
-  - name: jwt
-  - name: cors
-  - "{{ statsd_pulgin }}"
-  - name: acl
-    config.whitelist:
-    - orgSuperAdmin
-  - name: rate-limiting
-    config.policy: local
-    config.hour: "{{ medium_rate_limit_per_hour }}"
-    config.limit_by: credential
-  - name: request-size-limiting
-    config.allowed_payload_size: "{{ medium_request_size_limit }}"
   - name: opa-checks
     config.required: false
     config.enabled: false
