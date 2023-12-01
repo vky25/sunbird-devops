@@ -27,6 +27,11 @@
     repo: "{{ cassandra_repo }}"
     state: "present"
 
+- name: Update package cache
+  apt:
+    update_cache: yes
+  become: yes
+
 - name: debian | Installing Cassandra
   apt:
     name: "cassandra"
