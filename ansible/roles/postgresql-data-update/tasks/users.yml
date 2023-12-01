@@ -1,4 +1,13 @@
 ---
+- name: Make sure psycopg2 is installed
+  pip:
+    name: psycopg2
+    state: present
+  become: true
+  become_user: your_user
+  vars:
+    ansible_python_interpreter: /usr/bin/python
+
 - name: Ensure PostgreSQL users are present.
   postgresql_user:
     name: "{{ item.name }}"
