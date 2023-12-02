@@ -34,7 +34,7 @@
 
 - name: debian | Installing Cassandra
   apt:
-    name: "cassandra-db"
+    name: "cassandra"
     state: "present"
 
 - name: Make sure cassandra home is present
