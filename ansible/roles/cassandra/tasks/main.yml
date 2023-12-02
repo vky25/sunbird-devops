@@ -22,10 +22,10 @@
     url: https://downloads.apache.org/cassandra/KEYS
     state: present
 
-- name: debian | Add Cassandra repository manually
-  copy:
-    content: "deb [signed-by=/usr/share/keyrings/cassandra-archive-keyring.gpg] https://downloads.apache.org/cassandra/debian 311x main"
-    dest: /etc/apt/sources.list.d/cassandra.list
+- name: debian | Adding Cassandra Debian Repo
+  apt_repository:
+    repo: 'deb [signed-by=/usr/share/keyrings/cassandra-archive-keyring.gpg] https://downloads.apache.org/cassandra/debian 311x main'
+    state: present
 
 - name: debian | Update apt cache
   apt:
