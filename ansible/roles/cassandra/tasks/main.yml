@@ -29,7 +29,7 @@
     
 - name: debian | Installing Cassandra
   shell:
-    cmd: "apt-get install -y cassandra=3.11.3"
+    cmd: "apt-get install cassandra=3.11.3 -y"
 
 - name: Make sure cassandra home is present
   file:
