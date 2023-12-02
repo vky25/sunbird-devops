@@ -26,13 +26,12 @@
   apt_repository:
     repo: 'deb https://downloads.apache.org/cassandra/debian 311x main'
     state: present
-
+    
 - name: debian | Installing Cassandra
-  apt:
-    name: "cassandra3.11.3"
-    state: "present"
- 
-- name: Make sure cassandra home is present
+  shell:
+    cmd: "apt-get install -y cassandra3.11.3"
+
+ - name: Make sure cassandra home is present
   file:
     name: "{{ cassandra_home_directory }}"
     state: directory
