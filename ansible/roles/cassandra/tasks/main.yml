@@ -19,12 +19,12 @@
 
 - name: debian | Adding Cassandra Debian Repo Key
   apt_key:
-    url: "{{ cassandra_repo_key }}"
+    url: "https://downloads.apache.org/cassandra/KEYS"
     state: "present"
 
 - name: debian | Adding Cassandra Debian Repo
   apt_repository:
-    repo: "{{ cassandra_repo }}"
+    repo: "deb https://downloads.apache.org/cassandra/debian 311x main"
     state: "present"
 
 - name: Update package cache
@@ -36,7 +36,7 @@
   apt:
     name: "cassandra"
     state: "present"
-
+ 
 - name: Make sure cassandra home is present
   file:
     name: "{{ cassandra_home_directory }}"
