@@ -27,13 +27,9 @@
     repo: 'deb https://downloads.apache.org/cassandra/debian 311x main'
     state: present
     
-- name: debian | Update apt cache
-  shell:
-    cmd: "apt-get update"
-    
 - name: debian | Installing Cassandra
   shell:
-    cmd: "apt-get install cassandra=3.11.3 -y"
+    cmd: "apt-get install cassandra -y"
 
 - name: Make sure cassandra home is present
   file:
