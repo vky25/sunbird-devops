@@ -17,20 +17,21 @@
     line: "127.0.0.1 {{hostnameOfCql.stdout}}"
     path: /etc/hosts
 
-- name: debian | Adding GPG key for Cassandra repository
+- name: debian | Adding Cassandra Debian Repo Key
   apt_key:
-    url: https://downloads.apache.org/cassandra/KEYS
-    state: present
+    url: "{{ cassandra_repo_key }}"
+    state: "present"
 
 - name: debian | Adding Cassandra Debian Repo
   apt_repository:
-    repo: 'deb https://downloads.apache.org/cassandra/debian 311x main'
-    state: present
-    
-- name: debian | Installing Cassandra
-  shell:
-    cmd: "apt-get install cassandra -y"
+    repo: "{{ cassandra_repo }}"
+    state: "present"
 
+- name: debian | Installing Cassandra
+  apt:
+    name: "cassandra"
+    state: "present"
+    
 - name: Make sure cassandra home is present
   file:
     name: "{{ cassandra_home_directory }}"
