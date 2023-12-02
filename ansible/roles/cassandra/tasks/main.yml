@@ -18,14 +18,19 @@
     path: /etc/hosts
 
 - name: debian | Adding Cassandra Debian Repo Key
-  apt_key:
-    url: "{{ cassandra_repo_key }}"
-    state: "present"
+  command: "curl -sSL https://downloads.apache.org/cassandra/KEYS | gpg --dearmor -o /usr/share/keyrings/cassandra-archive-keyring.gpg"
+  args:
+    executable: /bin/bash
+  register: key_result
 
+- name: Show key result
+  debug:
+    var: key_result
+    
 - name: debian | Adding Cassandra Debian Repo
   apt_repository:
-    repo: "{{ cassandra_repo }}"
-    state: "present"
+    repo: 'deb [signed-by=/usr/share/keyrings/cassandra-archive-keyring.gpg] https://downloads.apache.org/cassandra/debian 311x main'
+    state: present
 
 - name: Update package cache
   apt:
