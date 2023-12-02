@@ -31,7 +31,7 @@
   shell:
     cmd: "apt-get install -y cassandra3.11.3"
 
- - name: Make sure cassandra home is present
+- name: Make sure cassandra home is present
   file:
     name: "{{ cassandra_home_directory }}"
     state: directory
