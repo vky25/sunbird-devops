@@ -27,11 +27,6 @@
     repo: 'deb https://downloads.apache.org/cassandra/debian 311x main'
     state: present
 
-- name: debian | Update apt cache
-  apt:
-    update_cache: yes
-  become: yes
-
 - name: debian | Installing Cassandra
   apt:
     name: "cassandra"
