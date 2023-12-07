@@ -1,6 +1,6 @@
-import urllib2, argparse, json
-import jwt
-
+#import urllib2, argparse, json
+#import jwt
+from urllib.request import urlopen, Request
 from common import json_request, get_api_plugins, retrying_urlopen
 
 def _consumer_exists(kong_admin_api_url, username):
