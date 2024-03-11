@@ -125,6 +125,7 @@ uci_registry_service_url: "http://fusionauth-service:9011"
 uci_admin_service_url: "http://uci-service:9999"
 notification_service_url: "http://notification-service:9000"
 registry_service_url: "http://registry-service:8081"
+custom_report_service_url: "http://{{custom_report_service_ip}}:9009"
 
 premium_consumer_rate_limits:
   - api: createContent
@@ -9551,3 +9552,45 @@ kong_apis:
   - name: opa-checks
     config.required: true
     config.enabled: true
+
+- name: progressReportCustom
+  uris: "/course/v1/progress/reports"
+  upstream_url: "{{ custom_report_service_url }}/course/v1/progress/reports"
+  strip_uri: true
+  plugins:
+  - name: jwt
+  - name: cors
+  - "{{ statsd_pulgin }}"
+  - name: acl
+    config.whitelist:
+    - customReports
+  - name: rate-limiting
+    config.policy: local
+    config.hour: "{{ x_large_rate_limit_per_hour }}"
+    config.limit_by: credential
+  - name: request-size-limiting
+    config.allowed_payload_size: "{{ large_request_size_limit }}"
+  - name: opa-checks 
+    config.required: false
+    config.enabled: false
+
+- name: progressReportCustomcsv
+  uris: "/course/v1/progress/reports/csv"
+  upstream_url: "{{ custom_report_service_url }}/course/v1/progress/reports/csv"
+  strip_uri: true
+  plugins:
+  - name: jwt
+  - name: cors
+  - "{{ statsd_pulgin }}"
+  - name: acl
+    config.whitelist:
+    - customReports
+  - name: rate-limiting
+    config.policy: local
+    config.hour: "{{ x_large_rate_limit_per_hour }}"
+    config.limit_by: credential
+  - name: request-size-limiting
+    config.allowed_payload_size: "{{ large_request_size_limit }}"
+  - name: opa-checks
+    config.required: false
+    config.enabled: false 
