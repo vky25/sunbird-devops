@@ -4,7 +4,7 @@
   become: yes
   environment:
     KUBECONFIG: "{{ kubeconfig_path }}"
-    ANSIBLE_PYTHON_INTERPRETER: "/usr/bin/python2"
+    ANSIBLE_PYTHON_INTERPRETER: "/usr/bin/python"
   vars_files:
     - "{{inventory_dir}}/secrets.yml"
   roles:
