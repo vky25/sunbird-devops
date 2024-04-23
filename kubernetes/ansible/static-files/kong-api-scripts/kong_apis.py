@@ -1,4 +1,4 @@
-import urllib2, argparse, json
+import urllib3, argparse, json
 
 from common import get_apis, json_request, get_api_plugins
 
@@ -80,7 +80,7 @@ if  __name__ == "__main__":
         input_apis = json.load(apis_file)
         try:
             save_apis(args.kong_admin_api_url, input_apis)
-        except urllib2.HTTPError as e:
+        except urllib3.HTTPError as e:
             error_message = e.read()
             print(error_message)
             raise
