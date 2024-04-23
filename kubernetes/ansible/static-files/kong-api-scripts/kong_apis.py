@@ -1,4 +1,5 @@
 import urllib3, argparse, json
+from urllib3.error import URLError
 
 from common import get_apis, json_request, get_api_plugins
 
