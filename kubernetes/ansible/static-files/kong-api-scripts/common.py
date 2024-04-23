@@ -1,4 +1,4 @@
-import urllib2, json, logging
+import urllib, json, logging
 from retry import retry
 
 logging.basicConfig()
@@ -29,13 +29,13 @@ def get_api_plugins(kong_admin_api_url, api_name):
 
 def json_request(method, url, data=None):
     request_body = json.dumps(data) if data is not None else None
-    request = urllib2.Request(url, request_body)
+    request = urllib.Request(url, request_body)
     if data:
         request.add_header('Content-Type', 'application/json')
     request.get_method = lambda: method
     response = retrying_urlopen(request)
     return response
 
-@retry(exceptions=urllib2.URLError, tries=5, delay=2, backoff=2)
+@retry(exceptions=urllib.URLError, tries=5, delay=2, backoff=2)
 def retrying_urlopen(*args, **kwargs):
-    return urllib2.urlopen(*args, **kwargs)
+    return urllib.urlopen(*args, **kwargs)
