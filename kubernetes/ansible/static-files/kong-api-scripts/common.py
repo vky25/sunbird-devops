@@ -31,7 +31,7 @@ def get_api_plugins(kong_admin_api_url, api_name):
 
 def json_request(method, url, data=None):
     request_body = json.dumps(data) if data is not None else None
-    request = urllib3.request(url, request_body)
+    request = urllib3.request(method,url,request_body)
     print("this is request",request)
     if data:
         request.add_header('Content-Type', 'application/json')
