@@ -36,6 +36,6 @@ def json_request(method, url, data=None):
     response = retrying_urlopen(request)
     return response
 
-@retry(exceptions=urllib.URLError, tries=5, delay=2, backoff=2)
+@retry(exceptions=urllib.error.URLError, tries=5, delay=2, backoff=2)
 def retrying_urlopen(*args, **kwargs):
     return urllib.urlopen(*args, **kwargs)
