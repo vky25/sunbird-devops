@@ -1,5 +1,5 @@
 import urllib3, json, logging
-from urllib3.error import URLError
+#from urllib3.error import URLError
 from retry import retry
 
 logging.basicConfig()
