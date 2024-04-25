@@ -15,14 +15,14 @@
         keycloak_management_password is defined
   ignore_errors: true
 
-- name: stop keycloak service
-  debug: msg="stopping keycloak"
-  notify:
-    - stop service
-    - wait for keycloak to stop
-  changed_when: true
+#- name: stop keycloak service
+#  debug: msg="stopping keycloak"
+#  notify:
+#    - stop service
+#    - wait for keycloak to stop
+#  changed_when: true
 
-- meta: flush_handlers
+#- meta: flush_handlers
 
 - name: start keycloak with script upload feature temporarily
   shell: "nohup {{keycloak_home}}/bin/standalone.sh -Dkeycloak.profile.feature.upload_scripts=enabled -b={{ansible_default_ipv4.address}} -bprivate={{ansible_default_ipv4.address}} --server-config standalone-ha.xml &"
