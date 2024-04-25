@@ -3,7 +3,7 @@
   debug: msg="starting keycloak"
   notify:
     - start service
-    - wait for keycloak to start
+    #- wait for keycloak to start
   changed_when: true
 
 - meta: flush_handlers
