@@ -28,7 +28,7 @@
   shell: "nohup {{keycloak_home}}/bin/standalone.sh -Dkeycloak.profile.feature.upload_scripts=enabled -b={{ansible_default_ipv4.address}} -bprivate={{ansible_default_ipv4.address}} --server-config standalone-ha.xml &"
   become: yes
   become_user: "{{ wildfly_user }}"
-  notify: wait for keycloak to start
+  #notify: wait for keycloak to start
 
 - meta: flush_handlers
 
