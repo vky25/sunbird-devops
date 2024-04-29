@@ -3,6 +3,6 @@
   command: az storage container create --name {{ container_name }} --public-access container
 
 - name: Upload to azure blob storage
-  command: az storage blob upload-batch --destination {{ destination_path }} --source {{ source_path }}
+  command: az storage blob upload-batch --destination router/config --source /var/lib/jenkins/workspace/Deploy/dev/Kubernetes/UploadChatbotConfig/ansible/../sunbird-bot/router/config --account-name devnewnulp
   async: 3600
   poll: 10
