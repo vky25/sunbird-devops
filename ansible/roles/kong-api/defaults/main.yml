@@ -95,10 +95,14 @@ uci_admin_prefix: /uci
 notification_service_prefix: /notification
 registry_service_prefix: /rc
 event_prefix: /event
+assessment_prefix: /assessment
+programs_service_prefix: /programs
+resource_prefix: /resource
 
 # Service URLs
 knowledge_mw_service_url: "http://knowledge-mw-service:5000"
 learning_service_url: "http://learner-service:9000"
+dial_service_url: "http://dial-service:9000"
 vm_learning_service_url: "http://{{learningservice_ip}}:8080/learning-service"
 telemetry_service_url: "http://telemetry-service:9001"
 player_service_url: "http://player:3000"
