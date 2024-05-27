@@ -50,7 +50,7 @@ rccoreenv:
 {{ opa_liveness_readiness | to_nice_yaml }}
 {{ envoy_liveness_readiness | to_nice_yaml }}
 
-registry_opa_enabled: {{ registry_opa_enabled | default('true') }}
+registry_opa_enabled: {{ registry_opa_enabled | default('false') }}
 
 envoy_resources:
   requests:
