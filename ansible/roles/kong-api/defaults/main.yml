@@ -94,6 +94,7 @@ user_extension_prefix: /user-extension
 uci_admin_prefix: /uci
 notification_service_prefix: /notification
 registry_service_prefix: /rc
+event_prefix: /event
 
 # Service URLs
 knowledge_mw_service_url: "http://knowledge-mw-service:5000"
