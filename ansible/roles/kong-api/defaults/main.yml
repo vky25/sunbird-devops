@@ -9772,7 +9772,7 @@ kong_apis:
 
 - name: PrivateEventRetireAPI
   uris: "{{ private_event_prefix }}/v4/retire"
-  upstream_url: "{{ vm_learning_service_url }}/event/v4/retire"
+  upstream_url: "{{ content_service_url }}/event/v4/retire"
   strip_uri: true
   plugins:
   - name: jwt
