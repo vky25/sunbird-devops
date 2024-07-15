@@ -39,7 +39,7 @@
   vars_files:
     - "{{inventory_dir}}/secrets.yml"
   roles:
-    - vm-agents-nodeexporter
+    - vm-agents-processexporter
   tags:
-    - node_exporter
+    - process_exporter
     - all
