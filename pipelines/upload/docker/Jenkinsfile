@@ -3,12 +3,25 @@ node(){
     try {
         stage('checkout public repo') {
             folder = new File("$WORKSPACE/.git")
-            if (folder.exists())
-            {
+            if (folder.exists()) {
                println "Found .git folder. Clearing it.."
-               sh'git clean -fxd'
+               sh 'git clean -fxd'
             }
-            checkout scm
+            // Print the value of public_repo_branch for debugging
+            println "public_repo_branch: ${params.public_repo_branch}"
+
+            // Ensure the public_repo_branch is set
+            if (!params.public_repo_branch) {
+                error 'public_repo_branch is not set. Please set the public_repo_branch parameter.'
+            }
+
+            // Checkout the repository
+            checkout([$class: 'GitSCM',
+                      branches: [[name: "${params.public_repo_branch}"]],
+                      doGenerateSubmoduleConfigurations: false,
+                      extensions: [],
+                      userRemoteConfigs: [[url: 'https://github.com/vky25/sunbird-devops.git']]
+            ])
         }
 
         stage('Artifact Upload') {
