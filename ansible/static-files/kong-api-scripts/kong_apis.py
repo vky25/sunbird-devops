@@ -1,9 +1,4 @@
-#!/usr/bin/env python3
-
-import urllib.request as urllib2
-import urllib.error as urllib_error
-import argparse
-import json
+import urllib2, argparse, json
 
 from common import get_apis, json_request, get_api_plugins
 
@@ -35,7 +30,7 @@ def save_apis(kong_admin_api_url, input_apis):
         json_request("PATCH", apis_url + "/" + saved_api_id, _sanitized_api_data(input_api))
 
     for saved_api in saved_api_to_be_deleted:
-        print("Deleting API {}".format(saved_api["name"]))
+        print("Deleting API {}".format(saved_api["name"]));
         json_request("DELETE", apis_url + "/" + saved_api["id"], "")
 
     for input_api in input_apis:
@@ -58,17 +53,17 @@ def _save_plugins_for_api(kong_admin_api_url, input_api_details):
     saved_plugins_to_be_deleted = [saved_plugin for saved_plugin in saved_plugins if saved_plugin["name"] not in input_plugin_names]
 
     for input_plugin in input_plugins_to_be_created:
-        print("Adding plugin {} for API {}".format(input_plugin["name"], api_name))
+        print("Adding plugin {} for API {}".format(input_plugin["name"], api_name));
         json_request("POST", api_pugins_url, input_plugin)
 
     for input_plugin in input_plugins_to_be_updated:
-        print("Updating plugin {} for API {}".format(input_plugin["name"], api_name))
+        print("Updating plugin {} for API {}".format(input_plugin["name"], api_name));
         saved_plugin_id = [saved_plugin["id"] for saved_plugin in saved_plugins if saved_plugin["name"] == input_plugin["name"]][0]
         input_plugin["id"] = saved_plugin_id
         json_request("PATCH", api_pugins_url + "/" + saved_plugin["id"], input_plugin)
 
     for saved_plugin in saved_plugins_to_be_deleted:
-        print("Deleting plugin {} for API {}".format(saved_plugin["name"], api_name))
+        print("Deleting plugin {} for API {}".format(saved_plugin["name"], api_name));
         json_request("DELETE", api_pugins_url + "/" + saved_plugin["id"], "")
 
 def _sanitized_api_data(input_api):
@@ -76,7 +71,7 @@ def _sanitized_api_data(input_api):
     sanitized_api_data = dict((key, input_api[key]) for key in input_api if key not in keys_to_ignore)
     return sanitized_api_data
 
-if __name__ == "__main__":
+if  __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Configure kong apis')
     parser.add_argument('apis_file_path', help='Path of the json file containing apis data')
     parser.add_argument('--kong-admin-api-url', help='Admin url for kong', default='http://localhost:8001')
@@ -85,7 +80,7 @@ if __name__ == "__main__":
         input_apis = json.load(apis_file)
         try:
             save_apis(args.kong_admin_api_url, input_apis)
-        except urllib_error.HTTPError as e:
+        except urllib2.HTTPError as e:
             error_message = e.read()
             print(error_message)
             raise
