@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: customreports
+  namespace: {{ .Values.namespace }}
+data:
+  config.json: |
+{{ .Values.customreportsjson | indent 4 }}
