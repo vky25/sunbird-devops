@@ -25,9 +25,9 @@ spec:
       - name: {{ .Values.imagepullsecrets }}
 {{- end }}
       volumes:
-        - name: customreports
+        - name: nulpchatbot
           configMap:
-            name: customreports
+            name: nulpchatbot
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.dockerhub }}/{{ .Values.repository }}:{{ .Values.image_tag }}"
@@ -37,7 +37,7 @@ spec:
           value: {{ .Values.env.javaoptions | quote }}
         resources:
         volumeMounts:
-        - name: customreports
+        - name: nulpchatbot
           mountPath: /app/config/config.json
           subPath: config.json
         ports:
