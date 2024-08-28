@@ -6,30 +6,30 @@ dockerhub: {{ dockerhub }}
 
 
 env:
-  javaoptions: {{customreports_java_mem_limit|default('-Xmx600m')}}
+  javaoptions: {{nulpchatbot_java_mem_limit|default('-Xmx600m')}}
 
-replicaCount: {{customreports_replicacount|default(1)}}
-repository: {{ image_customreports_service }}
+replicaCount: {{nulpchatbot_replicacount|default(1)}}
+repository: {{ image_nulpchatbot_service }}
 image_tag: {{ image_tag }}
 resources:
   requests:
-    cpu: {{customreports_cpu_req|default('100m')}}
-    memory: {{customreports_mem_req|default('100Mi')}}
+    cpu: {{nulpchatbot_cpu_req|default('100m')}}
+    memory: {{nulpchatbot_mem_req|default('100Mi')}}
   limits:
-    cpu: {{customreports_cpu_limit|default('1')}}
-    memory: {{customreports_mem_limit|default('1024Mi')}}
+    cpu: {{nulpchatbot_cpu_limit|default('1')}}
+    memory: {{nulpchatbot_mem_limit|default('1024Mi')}}
 network:
-  port: {{ service_customreports_port }}
-  targetport: {{ service_customreports_port }}
+  port: {{ service_nulpchatbot_port }}
+  targetport: {{ service_nulpchatbot_port }}
 strategy:
   type: RollingUpdate
-  maxsurge: {{ customreports_maxsurge|default('25%') }}
-  maxunavailable: {{ customreports_maxunavailable|default('25%') }}
+  maxsurge: {{ nulpchatbot_maxsurge|default('25%') }}
+  maxunavailable: {{ nulpchatbot_maxunavailable|default('25%') }}
 
 customreportsjson: |-
  {
-    "service_customreports_port" : "{{ service_customreports_port }}",
-    "custom_report_service_ip" : "{{ custom_report_service_ip }}",
+    "service_nulpchatbot_port" : "{{ service_nulpchatbot_port }}",
+    "nulpchatbot_service_ip" : "{{ nulpchatbot_service_ip }}",
     "KEYSPACE" : "{{ KEYSPACE }}",
     "TABLE" : "{{ TABLE }}",
     "USER_INFO_TABLE" : "{{ USER_INFO_TABLE }}"
