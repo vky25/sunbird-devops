@@ -257,7 +257,7 @@ service_env:
   customreports:
     - - ../../../../ansible/roles/stack-sunbird/templates/customreports_logback.xml
   nulpchatbot:
-    - - ../../../../ansible/roles/stack-sunbird/templates/nulpchatbot_logback.xml
+    - - ../../../../ansible/roles/stack-sunbird/templates/nulp-chatbot_logback.xml
   
   taxonomy:
     - ../../../../ansible/roles/stack-sunbird/templates/taxonomy-service_application.conf
