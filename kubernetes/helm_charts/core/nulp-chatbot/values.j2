@@ -28,12 +28,10 @@ strategy:
 
 customreportsjson: |-
  {
-    "service_nulpchatbot_port" : "{{ service_nulpchatbot_port }}",
-    "nulpchatbot_service_ip" : "{{ nulpchatbot_service_ip }}",
-    "KEYSPACE" : "{{ KEYSPACE }}",
-    "TABLE" : "{{ TABLE }}",
-    "USER_INFO_TABLE" : "{{ USER_INFO_TABLE }}"
-    "USER_INFO_KEYSPACE" : "{{ USER_INFO_KEYSPACE }}",
-    "COURSE_KEYSPACE" : "{{ COURSE_KEYSPACE}}",
-    "COURSE_TABLE" : "{{ COURSE_TABLE }}"
+    "service_nulpchatbot_port" : "{{ elite_system_db_port }}",
+    "nulpchatbot_service_ip" : "{{ elite_system_db_host }}",
+    "elite_system_db_username" : "{{ elite_system_db_username }}",
+    "elite_system_db_database" : "{{ elite_system_db_database }}",
+    "elite_system_db_password" : "{{ elite_system_db_password }}"
+
  } 
