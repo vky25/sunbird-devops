@@ -27,14 +27,14 @@ strategy:
   maxunavailable: {{ customreports_maxunavailable|default('25%') }}
 
 customreportsjson: |-
- {
-    "service_customreports_port" : "{{ service_customreports_port }}",
-    "custom_report_service_ip" : "{{ custom_report_service_ip }}",
-    "KEYSPACE" : "{{ KEYSPACE }}",
-    "TABLE" : "{{ TABLE }}",
-    "USER_INFO_TABLE" : "{{ USER_INFO_TABLE }}"
-    "USER_INFO_KEYSPACE" : "{{ USER_INFO_KEYSPACE }}",
-    "COURSE_KEYSPACE" : "{{ COURSE_KEYSPACE}}",
-    "COURSE_TABLE" : "{{ COURSE_TABLE }}"
-    "CLUSTER_LINK" : "{{ CLUSTER_LINK }}"
- } 
+  {
+     "service_customreports_port" : "{{ service_customreports_port }}",
+     "custom_report_service_ip" : "{{ custom_report_service_ip }}",
+     "KEYSPACE" : "{{ KEYSPACE }}",
+     "TABLE" : "{{ TABLE }}",
+     "USER_INFO_TABLE" : "{{ USER_INFO_TABLE }}",
+     "USER_INFO_KEYSPACE" : "{{ USER_INFO_KEYSPACE }}",
+     "COURSE_KEYSPACE" : "{{ COURSE_KEYSPACE}}",
+     "COURSE_TABLE" : "{{ COURSE_TABLE }}",
+     "CLUSTER_LINK" : "{{ CLUSTER_LINK }}"
+  }
